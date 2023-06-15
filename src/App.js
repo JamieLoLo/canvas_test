@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import car1 from './abc.png'
 import car2 from './a_4.png'
 import car3 from './a_5.png'
@@ -28,9 +28,6 @@ function App() {
       setDrawnImages((prev) => [...prev, newImage])
     }
   }
-  useEffect(() => {
-    console.log(drawnImages)
-  }, [drawnImages])
 
   const handleUndoClick = () => {
     setDrawnImages((prevImages) => {
