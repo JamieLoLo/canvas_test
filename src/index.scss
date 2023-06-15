@@ -15,3 +15,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@for $deg from -360 through 360 {
+  .rotate-#{$deg}deg {
+    transform: rotate(#{$deg}deg);
+  }
+}

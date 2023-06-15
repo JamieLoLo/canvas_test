@@ -1,4 +1,5 @@
 import './App.css'
+
 import React, { useState, useRef } from 'react'
 import img1 from './1.png'
 import img2 from './2.png'
@@ -58,25 +59,25 @@ function App() {
           <img
             src={img1}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer car'
+            className={`w-[80px] mr-3 cursor-pointer car  rotate-${rotateDeg}deg`}
             onClick={() => handleImageClick(img1)}
           />
           <img
             src={img2}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer car'
+            className={`w-[80px] mr-3 cursor-pointer car rotate-${rotateDeg}deg `}
             onClick={() => handleImageClick(img2)}
           />
           <img
             src={img3}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer car'
+            className={`w-[80px] mr-3 cursor-pointer car rotate-${rotateDeg}deg `}
             onClick={() => handleImageClick(img3)}
           />
           <img
             src={img4}
             alt=''
-            className='w-[80px] cursor-pointer car'
+            className={`w-[80px] cursor-pointer car rotate-${rotateDeg}deg `}
             onClick={() => handleImageClick(img4)}
           />
         </div>
