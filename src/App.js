@@ -1,28 +1,29 @@
+import './App.css'
 import React, { useState, useRef } from 'react'
-import car1 from './abc.png'
-import car2 from './a_4.png'
-import car3 from './a_5.png'
-import car4 from './a_6.png'
+import img1 from './1.png'
+import img2 from './2.png'
+import img3 from './3.png'
+import img4 from './4.png'
 import { Canvas, Rect, Image } from '@bucky24/react-canvas'
 
 function App() {
-  const [selectedCar, setSelectedCar] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(null)
   const [drawnImages, setDrawnImages] = useState([])
   const [rotateDeg, setRotateDeg] = useState(0)
   const canvasRef = useRef(null)
 
   const handleImageClick = (car) => {
-    setSelectedCar(car)
+    setSelectedImage(car)
   }
 
   const handleCanvasClick = ({ x, y }) => {
-    if (selectedCar) {
+    if (selectedImage) {
       const newImage = {
-        car: selectedCar,
+        car: selectedImage,
         x: x - 40,
         y: y - 25,
         width: 80,
-        height: 50,
+        height: 60,
         rotate: rotateDeg,
       }
       setDrawnImages((prev) => [...prev, newImage])
@@ -55,28 +56,28 @@ function App() {
       <div className='flex flex-col items-center'>
         <div className='flex'>
           <img
-            src={car1}
+            src={img1}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer'
-            onClick={() => handleImageClick(car1)}
+            className='w-[80px] mr-3 cursor-pointer car'
+            onClick={() => handleImageClick(img1)}
           />
           <img
-            src={car2}
+            src={img2}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer'
-            onClick={() => handleImageClick(car2)}
+            className='w-[80px] mr-3 cursor-pointer car'
+            onClick={() => handleImageClick(img2)}
           />
           <img
-            src={car3}
+            src={img3}
             alt=''
-            className='w-[80px] mr-3 cursor-pointer'
-            onClick={() => handleImageClick(car3)}
+            className='w-[80px] mr-3 cursor-pointer car'
+            onClick={() => handleImageClick(img3)}
           />
           <img
-            src={car4}
+            src={img4}
             alt=''
-            className='w-[80px] cursor-pointer'
-            onClick={() => handleImageClick(car4)}
+            className='w-[80px] cursor-pointer car'
+            onClick={() => handleImageClick(img4)}
           />
         </div>
 
