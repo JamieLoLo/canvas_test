@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
-
+import React, { useState, useRef, useEffect } from 'react'
 import car1 from './abc.png'
 import car2 from './a_4.png'
 import car3 from './a_5.png'
 import car4 from './a_6.png'
-
 import { Canvas, Rect, Image } from '@bucky24/react-canvas'
 
 function App() {
   const [selectedCar, setSelectedCar] = useState(null)
   const [drawnImages, setDrawnImages] = useState([])
-
+  const [rotateDeg, setRotateDeg] = useState(0)
   const canvasRef = useRef(null)
 
   const handleImageClick = (car) => {
@@ -25,11 +23,14 @@ function App() {
         y: y - 25,
         width: 80,
         height: 50,
+        rotate: rotateDeg,
       }
-
       setDrawnImages((prev) => [...prev, newImage])
     }
   }
+  useEffect(() => {
+    console.log(drawnImages)
+  }, [drawnImages])
 
   const handleUndoClick = () => {
     setDrawnImages((prevImages) => {
@@ -46,26 +47,11 @@ function App() {
       const link = document.createElement('a')
       link.href = canvasElement.toDataURL('image/jpeg')
       link.download = 'canvas.jpg'
+
+      // 手動觸發下載
       link.click()
     }
   }
-
-  // useEffect(() => {
-  //   const canvasElement = canvasRef.current.canvas
-
-  //   if (canvasElement) {
-  //     const context = canvasElement.getContext('2d')
-  //     context.clearRect(0, 0, canvasElement.width, canvasElement.height)
-
-  //     drawnImages.forEach((image) => {
-  //       const img = new window.Image()
-  //       img.src = image.car
-  //       img.onload = () => {
-  //         context.drawImage(img, image.x, image.y, image.width, image.height)
-  //       }
-  //     })
-  //   }
-  // }, [drawnImages])
 
   return (
     <div className='App'>
@@ -115,6 +101,7 @@ function App() {
                   width={image.width}
                   height={image.height}
                   key={index}
+                  rot={image.rotate}
                 />
               )
             })}
@@ -133,6 +120,31 @@ function App() {
           onClick={handleDownloadClick}
         >
           下載畫布
+        </button>
+
+        <button
+          className='bg-green-300 py-4 px-8 rounded-md mt-4'
+          onClick={() => {
+            if (rotateDeg === -360) {
+              setRotateDeg(-45)
+            } else {
+              setRotateDeg((prev) => prev - 45)
+            }
+          }}
+        >
+          向左45度
+        </button>
+        <button
+          className='bg-green-300 py-4 px-8 rounded-md mt-4 '
+          onClick={() => {
+            if (rotateDeg === 360) {
+              setRotateDeg(45)
+            } else {
+              setRotateDeg((prev) => prev + 45)
+            }
+          }}
+        >
+          向右45度
         </button>
       </div>
     </div>
